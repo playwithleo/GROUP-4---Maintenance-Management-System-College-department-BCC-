@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | BCC Maintenance System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+  <aside class="sidebar">
+    <div class="brand">
+      <img class="brand-logo" src="assets/BCC.png" alt="Binangonan Catholic College logo">
+      <div>
+        <h2>Binangonan Catholic College</h2>
+        <p>Maintenance System</p>
+      </div>
+    </div>
+
+    <nav class="nav-menu" aria-label="Main navigation">
+      <a href="#overview" class="nav-link active">Overview</a>
+      <a href="#equipment" class="nav-link">Equipment</a>
+      <a href="#ai-detection" class="nav-link">AI Failure Detection</a>
+      <a href="#requests" class="nav-link">Repair Requests</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="user-info">
+        <strong id="userRole">Department Admin</strong>
+        <span id="userEmail">admin@bcc.edu.ph</span>
+      </div>
+      <button id="logoutBtn" class="btn-logout" type="button">Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="page-header" id="overview">
+      <div>
+        <h1>Maintenance Dashboard</h1>
+        <p>College Department Facility &amp; Equipment Monitoring</p>
+      </div>
+      <span id="pageFeedback" class="feedback" role="status" aria-live="polite"></span>
+    </header>
+
+    <section class="kpi-grid" aria-label="Maintenance summary">
+      <div class="kpi-card">
+        <span class="kpi-label">Total Equipment</span>
+        <strong class="kpi-value" id="equipmentCount">—</strong>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Active Requests</span>
+        <strong class="kpi-value" id="activeRequestCount">—</strong>
+      </div>
+      <div class="kpi-card kpi-alert">
+        <span class="kpi-label">AI High-Risk Alerts</span>
+        <strong class="kpi-value" id="highRiskCount">—</strong>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Resolved This Month</span>
+        <strong class="kpi-value" id="resolvedCount">—</strong>
+      </div>
+    </section>
+
+    <section class="card" id="equipment">
+      <div class="card-header">
+        <div>
+          <h2>Equipment</h2>
+          <p>Register and update department equipment records</p>
+        </div>
+      </div>
+
+      <form id="equipmentForm" class="data-form">
+        <div class="form-group">
+          <label for="assetId">Asset ID</label>
+          <input id="assetId" name="assetId" maxlength="40" required>
+        </div>
+        <div class="form-group">
+          <label for="equipmentName">Equipment name</label>
+          <input id="equipmentName" name="name" maxlength="120" required>
+        </div>
+        <div class="form-group">
+          <label for="equipmentLocation">Location</label>
+          <input id="equipmentLocation" name="location" maxlength="120" required>
+        </div>
+        <div class="form-actions">
+          <button id="equipmentSubmit" class="btn-primary btn-sm" type="submit">Add equipment</button>
+          <button id="cancelEquipmentEdit" class="btn-secondary btn-sm" type="button" hidden>Cancel edit</button>
+        </div>
+      </form>
+      <p id="equipmentFeedback" class="feedback" role="status" aria-live="polite"></p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset ID</th>
+              <th>Equipment</th>
+              <th>Location</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="equipmentRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="ai-detection">
+      <div class="card-header">
+        <div>
+          <h2>AI Equipment Failure Detection</h2>
+          <p>Connect a model to analyze maintenance records and identify equipment risks</p>
+        </div>
+        <span class="tag-ml tag-inactive">Model not configured</span>
+      </div>
+      <div class="notice" role="status">
+        No ML model is configured. Scanning is unavailable; risk alerts remain at zero until a model/API is provided.
+      </div>
+      <button id="runAiBtn" class="btn-primary btn-sm" type="button" disabled aria-describedby="aiUnavailable">
+        Run ML scan
+      </button>
+      <span id="aiUnavailable" class="muted">Unavailable until a model is configured.</span>
+    </section>
+
+    <section class="card" id="requests">
+      <div class="card-header">
+        <div>
+          <h2>Repair Requests</h2>
+          <p>Create requests, assign staff, and update progress</p>
+        </div>
+      </div>
+
+      <form id="requestForm" class="data-form">
+        <div class="form-group">
+          <label for="requestLocation">Location</label>
+          <input id="requestLocation" name="location" maxlength="120" required>
+        </div>
+        <div class="form-group form-group-wide">
+          <label for="requestIssue">Issue</label>
+          <input id="requestIssue" name="issue" maxlength="500" required>
+        </div>
+        <div class="form-group">
+          <label for="requestAssignedTo">Assign to (optional)</label>
+          <input id="requestAssignedTo" name="assignedTo" maxlength="120">
+        </div>
+        <div class="form-actions">
+          <button class="btn-primary btn-sm" type="submit">Create request</button>
+        </div>
+      </form>
+      <p id="requestFeedback" class="feedback" role="status" aria-live="polite"></p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticket</th>
+              <th>Location</th>
+              <th>Issue</th>
+              <th>Assigned To</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="requestRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

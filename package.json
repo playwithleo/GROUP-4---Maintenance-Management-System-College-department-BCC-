@@ -1,0 +1,13 @@
+{
+  "name": "bcc-maintenance-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local BCC maintenance management system with SQLite storage",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  }
+}
