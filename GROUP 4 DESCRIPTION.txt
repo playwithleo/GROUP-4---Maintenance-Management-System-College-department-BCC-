@@ -1,0 +1,16 @@
+Group 3
+
+GROUP MEMBERS
+
+Virgillio JR R. Parayno
+Vergel A. Fabul
+Kurt Neiven T. Cenidoza
+Justine Brent Cruz
+
+
+ Project Title: Maintenance Management System for BCC College Department
+ AI Feature: Equipment Failure Detection Using Machine Learning 
+Short Description:
+ A web-based system designed to manage, monitor, and track maintenance requests and equipment conditions in the BCC College Department. It helps administrators record facility issues, assign maintenance tasks, and monitor repair progress.
+ AI Feature Description: 
+Uses Machine Learning to analyze equipment maintenance records and reported issues to identify possible equipment failures. It helps administrators detect potential problems early and perform preventive maintenance.
